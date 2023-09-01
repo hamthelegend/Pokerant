@@ -1,12 +1,13 @@
 package com.thebrownfoxx.pokerant.model.agent
 
+import com.thebrownfoxx.pokerant.model.Player
 import kotlin.math.min
 
 const val MaxHp = 100
 const val MaxArmor = 50
 const val ArmorAbsorption = 0.66f
 
-abstract class Agent {
+abstract class Agent(val player: Player) {
     var hp = MaxHp
         private set(value) {
             field = when {
@@ -50,7 +51,7 @@ abstract class Agent {
         armor += remainingHealing
     }
 
-    fun applyStatusEffect(statusEffect: MutableStatusEffect) {
+    fun apply(statusEffect: MutableStatusEffect) {
         val duplicates = _statusEffects.filter { it.type == statusEffect.type }
         _statusEffects.removeAll(duplicates)
         _statusEffects.add(statusEffect)

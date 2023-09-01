@@ -1,9 +1,19 @@
 package com.thebrownfoxx.pokerant.model.agent
 
-import com.thebrownfoxx.pokerant.model.GameState
 import com.thebrownfoxx.pokerant.model.OnTry
 
+class AbilityUseCasePrompt(val prompt: String = "")
+
+class AbilityUseCase(
+    val prompt: AbilityUseCasePrompt,
+    val use: Agent.() -> Unit,
+) {
+    constructor(prompt: String = "", use: Agent.() -> Unit) :
+            this(prompt = AbilityUseCasePrompt(prompt), use = use)
+}
+
 abstract class Ability(
+    val agent: Agent,
     val name: String,
     val maxCharges: Int,
     freeCharges: Int = 0,
@@ -36,11 +46,38 @@ abstract class Ability(
         queuedCharges = 0
     }
 
-    fun GameState.tryUse(useCase: AbilityUseCase, onTry: OnTry) {
+    fun tryUse(useCasePrompt: AbilityUseCasePrompt, onTry: OnTry) {
         if (existingCharges > 0) {
             existingCharges--
-            useCase.use(this)
+            val useCase = useCases.first { it.prompt == useCasePrompt }
+            useCase.use(agent)
             onTry.onSuccess()
         } else onTry.onFailure()
+    }
+}
+
+abstract class Ultimate(
+    val agent: Agent,
+    val name: String,
+    val requiredCharges: Int,
+) {
+    var charges: Int = 0
+        protected set
+
+    protected abstract val useCases: List<AbilityUseCase>
+    val useCasePrompts get() = useCases.map { it.prompt }
+
+    fun charge() {
+        if (charges < requiredCharges) charges++
+    }
+
+    fun tryUse(useCasePrompt: AbilityUseCasePrompt, onTry: OnTry) {
+        if (charges >= requiredCharges) {
+            val useCase = useCases.first { it.prompt == useCasePrompt }
+            useCase.use(agent)
+            onTry.onSuccess()
+        } else {
+            onTry.onFailure()
+        }
     }
 }

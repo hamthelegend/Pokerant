@@ -1,7 +1,9 @@
 package com.thebrownfoxx.pokerant.model.agent
 
 enum class StatusEffectType {
+    Smoked,
     Flashed,
+    RunItBack,
 }
 
 abstract class StatusEffect {
@@ -20,3 +22,8 @@ class MutableStatusEffect(
         if (turnsActive > 0) turnsActive--
     }
 }
+
+fun statusEffectOf(
+    type: StatusEffectType,
+    turnsActive: Int,
+) = MutableStatusEffect(type, turnsActive)
