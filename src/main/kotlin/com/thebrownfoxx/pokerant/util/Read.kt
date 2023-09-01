@@ -1,14 +1,15 @@
 package com.thebrownfoxx.pokerant.util
 
-fun readStringithPrompt(prompt: String): String {
+fun readStringWithPrompt(
+    prompt: String,
+    isValid: (input: String) -> Boolean = { true },
+): String {
     print("$prompt: ")
-    return readln()
-}
-
-fun readIntWithPrompt(prompt: String): Int {
-    var int: Int? = null
-    while (int == null) {
-        int = readStringithPrompt(prompt).toIntOrNull()
+    var input = readln()
+    while (!isValid(input)) {
+        println()
+        print("$prompt: ")
+        input = readln()
     }
-    return int
+    return input
 }
