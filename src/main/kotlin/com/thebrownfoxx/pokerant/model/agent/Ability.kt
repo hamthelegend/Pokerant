@@ -25,6 +25,8 @@ abstract class Ability(
     protected abstract val useCases: List<AbilityUseCase>
     val useCasePrompts get() = useCases.map { it.prompt }
 
+    override fun toString() = "Ability(name = $name, maxCharges = $maxCharges, charges = $charges)"
+
     fun tryBuy(onTry: OnTry) {
         if (charges < maxCharges) {
             queuedCharges++
@@ -66,6 +68,8 @@ abstract class Ultimate(
 
     protected abstract val useCases: List<AbilityUseCase>
     val useCasePrompts get() = useCases.map { it.prompt }
+
+    override fun toString() = "Ability(name = $name, requiredCharges = $requiredCharges, charges = $charges)"
 
     fun charge() {
         if (charges < requiredCharges) charges++

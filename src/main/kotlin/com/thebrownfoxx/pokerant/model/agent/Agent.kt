@@ -7,7 +7,10 @@ const val MaxHp = 100
 const val MaxArmor = 50
 const val ArmorAbsorption = 0.66f
 
-abstract class Agent(val player: Player) {
+abstract class Agent(
+    val player: Player,
+    val name: String,
+) {
     var hp = MaxHp
         private set(value) {
             field = when {
@@ -25,13 +28,15 @@ abstract class Agent(val player: Player) {
             }
         }
 
-    abstract val _ability1: Ability
-    abstract val _ability2: Ability
-    abstract val _signatureAbility: Ability
-    abstract val _ultimate: Ultimate
+    abstract val ability1: Ability
+    abstract val ability2: Ability
+    abstract val signatureAbility: Ability
+    abstract val ultimate: Ultimate
 
     private val _statusEffects = mutableListOf<MutableStatusEffect>()
     val statusEffects: List<StatusEffect> = _statusEffects
+
+    override fun toString() = "Agent(name = $name, hp = $hp, armor = $armor, ability1 = $ability1, ability2 = $ability2, signatureAbility = $signatureAbility, ultimate = $ultimate)"
 
     fun damage(amount: Int) {
         val damageForArmor = min((ArmorAbsorption * amount).toInt(), armor)
@@ -58,7 +63,7 @@ abstract class Agent(val player: Player) {
     }
 
     fun tickStatusEffectsDown() {
-        for (statusEffect in _statusEffects) {
+        _statusEffects.forEach { statusEffect ->
             statusEffect.tickDown()
             if (statusEffect.turnsActive <= 0) _statusEffects.remove(statusEffect)
         }

@@ -1,12 +1,15 @@
 package com.thebrownfoxx.pokerant.model
 
 import com.thebrownfoxx.pokerant.model.agent.Agent
+import com.thebrownfoxx.pokerant.model.agent.AgentConstructor
 
 class Player(
     val gameState: GameState,
     val name: String,
-    val agents: List<Agent>,
+    agentConstructors: List<AgentConstructor>,
 ) {
+    val agents = agentConstructors.map { it.construct(this) }
+
     var activeAgent = agents.first()
         private set
 
@@ -18,9 +21,11 @@ class Player(
             gameState.player1 -> gameState.player2
             else -> gameState.player1
         }
+
+    override fun toString() = "Player(name = $name, agents = $agents, activeAgent = $activeAgent, credits = $credits)"
 }
 
 fun GameState.Player(
     name: String,
-    agents: List<Agent>,
-) = Player(gameState = this, name = name, agents = agents)
+    agentConstructors: List<AgentConstructor>,
+) = Player(gameState = this, name = name, agentConstructors = agentConstructors)
