@@ -1,8 +1,8 @@
 package com.thebrownfoxx.pokerant.game
 
-import com.thebrownfoxx.pokerant.model.AgentsPerPlayer
-import com.thebrownfoxx.pokerant.model.GameState
-import com.thebrownfoxx.pokerant.model.agent.AgentConstructor
+import com.thebrownfoxx.pokerant.model.gamestate.AgentsPerPlayer
+import com.thebrownfoxx.pokerant.model.gamestate.GameState
+import com.thebrownfoxx.pokerant.model.agent.base.AgentConstructor
 import com.thebrownfoxx.pokerant.util.readIntWithPrompt
 import com.thebrownfoxx.pokerant.util.readStringithPrompt
 

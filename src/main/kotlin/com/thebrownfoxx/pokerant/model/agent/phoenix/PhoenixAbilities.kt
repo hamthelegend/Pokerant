@@ -1,6 +1,6 @@
 package com.thebrownfoxx.pokerant.model.agent.phoenix
 
-import com.thebrownfoxx.pokerant.model.agent.*
+import com.thebrownfoxx.pokerant.model.agent.base.*
 
 class Blaze(phoenix: Phoenix) : Ability(
     agent = phoenix,

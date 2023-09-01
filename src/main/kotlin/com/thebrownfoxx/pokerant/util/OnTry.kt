@@ -1,4 +1,4 @@
-package com.thebrownfoxx.pokerant.model
+package com.thebrownfoxx.pokerant.util
 
 open class OnTry(
     open val onSuccess: () -> Unit,

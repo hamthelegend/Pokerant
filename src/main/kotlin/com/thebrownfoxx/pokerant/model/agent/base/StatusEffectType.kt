@@ -1,4 +1,4 @@
-package com.thebrownfoxx.pokerant.model.agent
+package com.thebrownfoxx.pokerant.model.agent.base
 
 enum class StatusEffectType {
     Smoked,

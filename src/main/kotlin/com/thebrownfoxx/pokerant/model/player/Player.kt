@@ -1,7 +1,7 @@
-package com.thebrownfoxx.pokerant.model
+package com.thebrownfoxx.pokerant.model.player
 
-import com.thebrownfoxx.pokerant.model.agent.Agent
-import com.thebrownfoxx.pokerant.model.agent.AgentConstructor
+import com.thebrownfoxx.pokerant.model.gamestate.GameState
+import com.thebrownfoxx.pokerant.model.agent.base.AgentConstructor
 
 class Player(
     val gameState: GameState,

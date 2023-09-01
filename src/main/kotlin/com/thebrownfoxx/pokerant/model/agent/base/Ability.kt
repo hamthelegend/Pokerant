@@ -1,6 +1,6 @@
-package com.thebrownfoxx.pokerant.model.agent
+package com.thebrownfoxx.pokerant.model.agent.base
 
-import com.thebrownfoxx.pokerant.model.OnTry
+import com.thebrownfoxx.pokerant.util.OnTry
 
 class AbilityUseCasePrompt(val prompt: String = "")
 

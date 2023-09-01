@@ -1,6 +1,7 @@
-package com.thebrownfoxx.pokerant.model
+package com.thebrownfoxx.pokerant.model.gamestate
 
-import com.thebrownfoxx.pokerant.model.agent.AgentConstructor
+import com.thebrownfoxx.pokerant.model.agent.base.AgentConstructor
+import com.thebrownfoxx.pokerant.model.player.Player
 
 const val AgentsPerPlayer = 1
 

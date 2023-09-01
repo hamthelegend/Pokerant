@@ -1,6 +1,6 @@
-package com.thebrownfoxx.pokerant.model.agent
+package com.thebrownfoxx.pokerant.model.agent.base
 
-import com.thebrownfoxx.pokerant.model.Player
+import com.thebrownfoxx.pokerant.model.player.Player
 import kotlin.math.min
 
 const val MaxHp = 100

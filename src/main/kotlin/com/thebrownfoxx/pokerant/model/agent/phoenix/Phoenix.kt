@@ -1,8 +1,8 @@
 package com.thebrownfoxx.pokerant.model.agent.phoenix
 
-import com.thebrownfoxx.pokerant.model.Player
-import com.thebrownfoxx.pokerant.model.agent.Agent
-import com.thebrownfoxx.pokerant.model.agent.AgentConstructor
+import com.thebrownfoxx.pokerant.model.player.Player
+import com.thebrownfoxx.pokerant.model.agent.base.Agent
+import com.thebrownfoxx.pokerant.model.agent.base.AgentConstructor
 
 class Phoenix(player: Player) : Agent(
     player = player,
